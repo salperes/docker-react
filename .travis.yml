@@ -1,0 +1,12 @@
+sudo: required
+service:
+    - docker
+
+before_install:
+    - docker build -t salperes/docker-react -f Dockerfile.dev .
+
+script:
+    - docker run salperes/docker-react npm run test -- --coverage
+#    - docker run -e CI=true -v /app/node_modules -v $(pwd):/app 6d99620449dd npm run test -- --coverage
+#    - docker run -e CI=true salperes/docker-react npm run test
+#language: generic 
